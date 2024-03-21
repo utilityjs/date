@@ -12,6 +12,7 @@
 			"LICENSE",
 			"README.md",
 			"mod.ts",
+			"README.md",
 			"deno.json",
 			"deno.lock",
 			"src/**/*.ts"
