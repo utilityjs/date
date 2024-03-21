@@ -1,5 +1,6 @@
 {
 	"name": "@utility/date",
+	"version": "0.1.0",
 	"tasks": {
 		"coverage": "deno coverage --include=src --lcov > coverage/lcov.info"
 	},
