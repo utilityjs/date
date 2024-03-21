@@ -4,10 +4,10 @@
  *
  * @example
  * ```ts
- * isIsoDate("2022-12-27T07:40:25.551Z");
+ * isISODate("2022-12-27T07:40:25.551Z");
  * // => true
  *
- * isIsoDate("25/12/2022");
+ * isISODate("25/12/2022");
  * // => false
  * ```
  */

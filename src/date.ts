@@ -5,14 +5,14 @@
  * @return {boolean} Returns `true` if `value` is a valid iso date, else `false`.
  * @example
  * ```ts
- * isIsoDate("2022-12-27T07:40:25.551Z");
+ * isISODate("2022-12-27T07:40:25.551Z");
  * // => true
  *
- * isIsoDate("25/12/2022");
+ * isISODate("25/12/2022");
  * // => false
  * ```
  */
-export function isIsoDate(value: string): boolean {
+export function isISODate(value: string): boolean {
 	if (!value || !/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/.test(value))
 		return false;
 	const date = new Date(value);
