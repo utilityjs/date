@@ -12,6 +12,8 @@
 			"LICENSE",
 			"README.md",
 			"mod.ts",
+			"deno.json",
+			"deno.lock",
 			"src/**/*.ts"
 		],
 		"exclude": [
