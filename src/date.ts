@@ -13,8 +13,8 @@
  * ```
  */
 export function isISODate(value: string): boolean {
-	if (!value || !/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/.test(value))
-		return false;
-	const date = new Date(value);
-	return date.toISOString() === value;
+  if (!value || !/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/.test(value))
+    return false;
+  const date = new Date(value);
+  return date.toISOString() === value;
 }
