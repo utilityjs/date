@@ -4,8 +4,7 @@
   "tasks": {
     "coverage": "deno coverage --include=src --lcov > coverage/lcov.info"
   },
-  "test": {
-  },
+  "test": {},
   "exports": "./mod.ts",
   "publish": {
     "include": [
