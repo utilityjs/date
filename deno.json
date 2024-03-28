@@ -2,21 +2,16 @@
   "name": "@utility/date",
   "version": "0.2.1-pre.0",
   "tasks": {
-    "coverage": "deno coverage --include=src --lcov > coverage/lcov.info"
+    "coverage": "deno task test --coverage=./dist/coverage && deno coverage --include=src --lcov ./dist/coverage > ./dist/coverage/lcov.info",
+    "test": "deno test"
   },
-  "test": {},
   "exports": "./mod.ts",
+  "exclude": [
+    "dist"
+  ],
   "publish": {
-    "include": [
-      "LICENSE",
-      "README.md",
-      "mod.ts",
-      "README.md",
-      "deno.json",
-      "deno.lock",
-      "src/**/*.ts"
-    ],
     "exclude": [
+      ".github/",
       "test/"
     ]
   },
