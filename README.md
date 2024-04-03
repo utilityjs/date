@@ -2,6 +2,8 @@
 
 A Date utility library
 
+## Install
+
 Deno
 
 ```shell
@@ -20,7 +22,7 @@ Bun
 bunx jsr add @utility/date
 ```
 
-Example
+## Usage
 
 ```typescript
 import { isISODate } from "@utility/date";
@@ -31,3 +33,7 @@ isISODate("2022-12-27T07:40:25.551Z");
 isISODate("25/12/2022");
 // => false
 ```
+
+## LICENSE
+
+MIT
