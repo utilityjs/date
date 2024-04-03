@@ -7,11 +7,11 @@
   },
   "exports": "./mod.ts",
   "exclude": [
-    "dist"
+    "dist",
+    ".github/"
   ],
   "publish": {
     "exclude": [
-      ".github/",
       "test/"
     ]
   },
