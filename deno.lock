@@ -21,11 +21,5 @@
       }
     }
   },
-  "remote": {},
-  "workspace": {
-    "dependencies": [
-      "jsr:@std/assert@^0.220.1",
-      "jsr:@std/testing@^0.220.1"
-    ]
-  }
+  "remote": {}
 }

@@ -1,26 +1,12 @@
 # @utility/date
 
-A Date utility library
+[![JSR Version](https://jsr.io/badges/@utility/string)](https://jsr.io/@utility/date)
+[![JSR Score](https://jsr.io/badges/@utility/string/score)](https://jsr.io/@utility/date/score)
+[![Test Status](https://github.com/utilityjs/string/actions/workflows/test.yml/badge.svg)](https://github.com/utilityjs/date/actions/workflows/test.yml)
+[![Coverage](https://codecov.io/gh/utilityjs/date/branch/main/graph/badge.svg?token=OzlniGFmNp)](https://codecov.io/gh/utilityjs/date)
+[![License](https://img.shields.io/github/license/utilityjs/date.svg?label=License)](/LICENSE)
 
-## Install
-
-Deno
-
-```shell
-deno add @utility/date
-```
-
-Node
-
-```shell
-npx jsr add @utility/date
-```
-
-Bun
-
-```shell
-bunx jsr add @utility/date
-```
+Collection of date utility functions
 
 ## Usage
 
@@ -33,7 +19,3 @@ isISODate("2022-12-27T07:40:25.551Z");
 isISODate("25/12/2022");
 // => false
 ```
-
-## LICENSE
-
-MIT

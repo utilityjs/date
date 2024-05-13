@@ -10,7 +10,8 @@
     "dist",
     ".run",
     ".github/",
-    "version.json"
+    "version.json",
+    "test_deps.ts"
   ],
   "publish": {
     "exclude": [
@@ -18,7 +19,5 @@
     ]
   },
   "imports": {
-    "@std/assert": "jsr:@std/assert@^0.220.1",
-    "@std/testing": "jsr:@std/testing@^0.220.1"
   }
 }

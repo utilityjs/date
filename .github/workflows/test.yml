@@ -27,7 +27,8 @@ jobs:
         run: deno task coverage
 
       - name: Upload coverage
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           name: ${{ matrix.os }}-${{ matrix.deno }}
           files: ./dist/coverage/lcov.info
+          token: "${{ secrets.CODECOV_TOKEN }}"
