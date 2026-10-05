@@ -6,9 +6,12 @@ const ISO_DATE_PATTERN = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
  * the exact format produced by `Date.prototype.toISOString()`
  * (`YYYY-MM-DDTHH:mm:ss.sssZ`).
  *
- * The string must both match that shape and describe a real calendar date,
- * so values such as `"2022-13-45T07:40:25.551Z"` are rejected. This function
- * never throws.
+ * The string must both match that shape and describe a real instant, so
+ * values such as `"2022-13-45T07:40:25.551Z"` or `"2023-02-30T00:00:00.000Z"`
+ * are rejected. Validation uses the `Temporal` API
+ * (`Temporal.Instant.from`) when available, and falls back to `Date` on
+ * runtimes without it; both give the same result. This function never
+ * throws.
  *
  * @param value The value to check.
  * @returns `true` if `value` is a valid ISO date string, otherwise `false`.
@@ -26,6 +29,30 @@ export function isISODate(value: string): boolean {
   if (!value || !ISO_DATE_PATTERN.test(value)) {
     return false;
   }
+
+  // Temporal is missing in older Deno versions, Node and some browsers.
+  if (typeof globalThis.Temporal === "undefined") {
+    return _isISODateWithDate(value);
+  }
+
+  let instant: Temporal.Instant;
+  try {
+    // Throws RangeError for out-of-range fields, e.g. month 13 or Feb 30.
+    instant = Temporal.Instant.from(value);
+  } catch (error) {
+    if (error instanceof RangeError) {
+      return false;
+    }
+    throw error;
+  }
+
+  // Round-trip catches values Temporal constrains instead of rejecting,
+  // e.g. the leap second "23:59:60" is parsed as "23:59:59".
+  return instant.toString({ fractionalSecondDigits: 3 }) === value;
+}
+
+/** `Date`-based fallback for runtimes without `Temporal`. */
+function _isISODateWithDate(value: string): boolean {
   const date = new Date(value);
   // An out-of-range date yields `Invalid Date`, whose toISOString() throws.
   if (Number.isNaN(date.getTime())) {
