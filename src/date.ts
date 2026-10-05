@@ -1,21 +1,36 @@
+/** Strict `YYYY-MM-DDTHH:mm:ss.sssZ` shape produced by `Date#toISOString()`. */
+const ISO_DATE_PATTERN = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/;
+
 /**
- * Check if provided string is valid iso date
+ * Checks whether the provided string is a valid ISO 8601 UTC date string in
+ * the exact format produced by `Date.prototype.toISOString()`
+ * (`YYYY-MM-DDTHH:mm:ss.sssZ`).
  *
- * @param {string} value The value to check.
- * @return {boolean} Returns `true` if `value` is a valid iso date, else `false`.
- * @example
+ * The string must both match that shape and describe a real calendar date,
+ * so values such as `"2022-13-45T07:40:25.551Z"` are rejected. This function
+ * never throws.
+ *
+ * @param value The value to check.
+ * @returns `true` if `value` is a valid ISO date string, otherwise `false`.
+ *
+ * @example Usage
  * ```ts
- * isISODate("2022-12-27T07:40:25.551Z");
- * // => true
+ * import { isISODate } from "@utility/date";
  *
- * isISODate("25/12/2022");
- * // => false
+ * isISODate("2022-12-27T07:40:25.551Z"); // true
+ * isISODate("25/12/2022"); // false
+ * isISODate("2022-13-45T07:40:25.551Z"); // false (no such month/day)
  * ```
  */
 export function isISODate(value: string): boolean {
-  if (!value || !/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/.test(value)) {
+  if (!value || !ISO_DATE_PATTERN.test(value)) {
     return false;
   }
   const date = new Date(value);
+  // An out-of-range date yields `Invalid Date`, whose toISOString() throws.
+  if (Number.isNaN(date.getTime())) {
+    return false;
+  }
+  // Round-trip catches dates that overflow, e.g. "2023-02-30" -> "2023-03-02".
   return date.toISOString() === value;
 }
